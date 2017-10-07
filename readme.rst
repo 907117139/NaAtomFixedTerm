@@ -26,6 +26,7 @@
 =======
 生成exe
 =======
+打开Anaconda Prompt并按照顺序运行下列命令
 - pip install pyinstaller，这一步是为了安装pyinstaller这个工具，若安装，可省略
-- pyinstaller *.py，代表你要执行的文件名
+- pyinstaller -w *.py，代表你要执行的文件名
 - 生成的exe文件在一个dist的文件夹里面
