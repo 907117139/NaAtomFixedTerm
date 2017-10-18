@@ -30,3 +30,22 @@
 - pip install pyinstaller，这一步是为了安装pyinstaller这个工具，若安装，可省略
 - pyinstaller -w *.py，代表你要执行的文件名
 - 生成的exe文件在一个dist的文件夹里面
+
+================
+上传以及下载更新
+================
+利用git以及github实现代码托管和同步
+- 从github上面下载源码
+    - 在所要存放源码的目录右键打开Git Bash Here
+    - 键入命令 git clone xxx, 其中xxx代表你的github代码仓库地址
+- 同步github上面的代码到本地
+    - 进入源码的目录
+    - 右键打开Git Bash Here
+    - 键入命令git pull 即可
+- 上传本地代码到github
+    - 进入源码的目录
+    - 右键打开Git Gui Here
+    - 选中修改过的文件
+    - 点击stage changed 按钮
+    - 在按钮旁边的空白区域编写commit注释
+    - 点击push即可
