@@ -23,10 +23,19 @@ def find_alpha(delta,col):
     :param m2:
     :return:
     """
-    big_a = find_alpha_bigger_than_delta(delta, col)
-    small_a = find_alpha_smaller_than_delta(delta, col)
-    big_delta = find_bigger_delta(delta, col)
-    small_delta =find_smaller_delta(delta, col)
+    if len(col) < 2: # 非边界情况
+        big_a = find_alpha_bigger_than_delta(delta, col)
+        small_a = find_alpha_smaller_than_delta(delta, col)
+        big_delta = find_bigger_delta(delta, col)
+        small_delta =find_smaller_delta(delta, col)
+    else: # 边界情况
+        big = col[0]
+        small = col[1]
+        big_a = 0.98
+        small_a = 1.0
+        big_delta = dataFrame[big].tolist()[-1]
+        small_delta = dataFrame[small].tolist()[0]
+
     alpha = round(big_a + (big_delta - delta)/(big_delta-small_delta)*(small_a - big_a), 3)
     return alpha
 
@@ -117,6 +126,15 @@ def find_which_col(delta):
         l = list(dataFrame[col])
         if delta > l[-1] and delta < l[0]:
             return col
+    i = 0
+    for col in cols:
+        l = dataFrame[col].tolist()
+        if l[0] < delta:
+            small = cols[i]
+            big = cols[i-1]
+            return [big, small]
+        i = i + 1
+
 
 
 def find_m(col):
@@ -125,7 +143,10 @@ def find_m(col):
     :param col:
     :return:
     """
-    m = int(col)
+    if len(col) < 2:
+        m = int(col)
+    else:
+        m = int(col[0])
     m = m // 10
     return m
 
@@ -145,8 +166,8 @@ if __name__ == '__main__':
     """
     测试功能是否正确
     """
-    lambda1 = 330.266
-    lambda2 = 285.293
+    lambda1 = 498
+    lambda2 = 568.5
 
     wave_number1 = convert_to_wave_number(lambda1)
     wave_number2 = convert_to_wave_number(lambda2)

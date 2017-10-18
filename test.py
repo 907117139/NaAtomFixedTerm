@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import os
 
 q=[]
 q.append([1,2,3])
@@ -21,5 +22,20 @@ def switch(a,b):
         t = a
         a=b
         b=a
+    return True, False
 
-print(a,'',b)
+print(switch(a,b))
+
+if a > 0:
+    m = 3
+
+print(m)
+
+import tkinter as tk
+
+current_dir = os.getcwd()
+top = tk.Tk()
+photo = tk.PhotoImage(file=current_dir + r'\resource\picture\delta_l.png')
+label = tk.Label(top, image=photo)
+label.pack()
+tk.mainloop()

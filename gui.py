@@ -1,7 +1,13 @@
 import tkinter as tk
 import interpolation
+import os
+from PIL import Image,ImageTk
 
-class generate_ui():
+
+
+
+
+class tk_generate_ui():
     unkonwn = 'Unknown'
     def __init__(self):
         self.top = tk.Tk()
@@ -47,7 +53,11 @@ class generate_ui():
         self.label10.grid(row=1, column=3)
 
         # 搭配delta_l和数值标签
-        self.label11 = tk.Label(self.top, text='delta_l')
+        current_dir = os.getcwd()
+        photo = tk.PhotoImage(file=current_dir + r'\resource\picture\delta_l.png')
+        photo = tk.PhotoImage(file=current_dir + r'\resource\picture\delta_l.png')
+        self.label11 = tk.Label(self.top, image=photo)
+        self.label11.image = photo
         self.label11.grid(row=4, column=0)
         self.label12 = tk.Label(self.top, text=self.unkonwn)
         self.label12.grid(row=4, column=1)
@@ -60,7 +70,8 @@ class generate_ui():
 
         # 开始按钮
         self.button1 = tk.Button(self.top, text="start", command=self.press_button1)
-        self.button1.grid(row = 5, column=0)
+        self.button1.grid(row =5, column=0)
+
 
     def press_button1(self):
         """
@@ -103,5 +114,5 @@ class generate_ui():
         tk.mainloop()
 
 if __name__ == '__main__':
-    g = generate_ui()
+    g = tk_generate_ui()
     g.run()

@@ -43,6 +43,14 @@ if __name__ == '__main__':
     form = generate_Rydberg(R)
     print(np.shape(form))
     print(len(form))
-    for i in range(len(form)):
-        print(i)
-        print(form[i])
+    # for i in range(len(form)):
+    #     print(i)
+    #     print(form[i])
+
+    form = np.array(form)
+
+    cols = ['alpha', '1', '12', '2', '23', '3', '34', '4', '45', '5', '56', '6', '67', '7', '78', '8', '89', '9',
+            '9 10', '10']
+    # dataFrame储存着里德伯表
+    dataFrame = pd.DataFrame(form, columns=cols)
+    print(dataFrame)
