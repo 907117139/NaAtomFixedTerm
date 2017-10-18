@@ -1,75 +1,92 @@
 import tkinter as tk
 import interpolation
 import os
-from PIL import Image,ImageTk
 
 
 
 
-
-class tk_generate_ui():
+"""
+    控件命名规则：xxx_控件类名
+        xxx是用来区分的真实名字
+"""
+class generate_ui():
     unkonwn = 'Unknown'
     def __init__(self):
         self.top = tk.Tk()
+        self.top.title("TODO")
         self.top.columnconfigure(0, weight=1)
         self.top.columnconfigure(1, weight=1)
         self.top.columnconfigure(2, weight=1)
+        self.top.columnconfigure(3, weight=1)
+        self.top.columnconfigure(4, weight=1)
+        self.top.columnconfigure(5, weight=1)
 
         # 搭配lambda1 和输入
-        self.label1 = tk.Label(self.top, text="λ 1(nm):")
-        self.label1.grid(row=0)
-        self.entry1 = tk.Entry(self.top)
-        self.entry1.grid(row=0, column=1)
+        self.lambda1_label = tk.Label(self.top, text="λ 1(nm):")
+        self.lambda1_label.grid(row=0)
+        self.lambda1_entry = tk.Entry(self.top)
+        self.lambda1_entry.grid(row=0, column=1)
 
         # 搭配lambda2 和输入
-        self.label2 = tk.Label(self.top, text="λ 2(nm):")
-        self.label2.grid(row=1)
-        self.entry2 = tk.Entry(self.top)
-        self.entry2.grid(row=1, column=1)
-
-
-        # 搭配固定项和数值标签
-        self.label3 = tk.Label(self.top, text="An'l'(1/cm)")
-        self.label3.grid(row=2,column=0)
-        self.label4 = tk.Label(self.top, text=self.unkonwn)
-        self.label4.grid(row=2, column=1)
-
-        # 搭配n 和数值标签
-        self.label5 = tk.Label(self.top, text="n")
-        self.label5.grid(row=3, column=0)
-        self.label6 = tk.Label(self.top, text=self.unkonwn)
-        self.label6.grid(row=3, column=1)
+        self.lambda2_label = tk.Label(self.top, text="λ 2(nm):")
+        self.lambda2_label.grid(row=1)
+        self.lambda2_entry = tk.Entry(self.top)
+        self.lambda2_entry.grid(row=1, column=1)
 
         # 搭配wave number 1和数值标签
-        self.label7 = tk.Label(self.top, text='wave number 1(1/cm):')
-        self.label7.grid(row=0, column=2)
-        self.label8 = tk.Label(self.top, text=self.unkonwn)
-        self.label8.grid(row=0, column=3)
+        self.wave_number1_label = tk.Label(self.top, text='wave number 1(1/cm):')
+        self.wave_number1_label.grid(row=0, column=2)
+        self.value_of_wave_number1_label = tk.Label(self.top, text=self.unkonwn)
+        self.value_of_wave_number1_label.grid(row=0, column=3)
 
         # 搭配wave number 2和数值标签
-        self.label9 = tk.Label(self.top, text='wave number 2(1/cm):')
-        self.label9.grid(row=1, column=2)
-        self.label10 = tk.Label(self.top, text=self.unkonwn)
-        self.label10.grid(row=1, column=3)
+        self.wave_number2_label = tk.Label(self.top, text='wave number 2(1/cm):')
+        self.wave_number2_label.grid(row=1, column=2)
+        self.value_of_wave_number2_label = tk.Label(self.top, text=self.unkonwn)
+        self.value_of_wave_number2_label.grid(row=1, column=3)
+
+        # 搭配energy leve和数值标签
+        self.energy_level1_label = tk.Label(self.top, text='energy_level1:')
+        self.value_of_energy_level1_label = tk.Label(self.top, text=self.unkonwn)
+        self.energy_level1_label.grid(row=0, column=4)
+        self.value_of_energy_level1_label.grid(row=0,column=5)
+
+        # 搭配energy leve和数值标签
+        self.energy_level2_label = tk.Label(self.top, text='energy_level2:')
+        self.value_of_energy_level2_label = tk.Label(self.top, text=self.unkonwn)
+        self.energy_level2_label.grid(row=1, column=4)
+        self.value_of_energy_level2_label.grid(row=1, column=5)
+
+        # 搭配固定项和数值标签
+        self.fixed_term_label = tk.Label(self.top, text="An'l'(1/cm)")
+        self.fixed_term_label.grid(row=2, column=0)
+        self.value_of_fixed_term_label = tk.Label(self.top, text=self.unkonwn)
+        self.value_of_fixed_term_label.grid(row=2, column=1)
+
+        # 搭配n 和数值标签
+        self.n_label = tk.Label(self.top, text="n")
+        self.n_label.grid(row=3, column=0)
+        self.value_of_n_label = tk.Label(self.top, text=self.unkonwn)
+        self.value_of_n_label.grid(row=3, column=1)
 
         # 搭配delta_l和数值标签
         current_dir = os.getcwd()
-        photo = tk.PhotoImage(file=current_dir + r'\resource\picture\delta_l.png')
-        self.label11 = tk.Label(self.top, image=photo)
-        self.label11.image = photo
-        self.label11.grid(row=4, column=0)
-        self.label12 = tk.Label(self.top, text=self.unkonwn)
-        self.label12.grid(row=4, column=1)
+        delta_l_image = tk.PhotoImage(file=current_dir + r'\resource\picture\delta_l.png')
+        self.delta_l_label = tk.Label(self.top, image=delta_l_image) # 这个语句与下一条语句必须搭配使用才能显示图片
+        self.delta_l_label.image = delta_l_image
+        self.delta_l_label.grid(row=4, column=0)
+        self.value_of_delta_l_label = tk.Label(self.top, text=self.unkonwn)
+        self.value_of_delta_l_label.grid(row=4, column=1)
 
         # 搭配波数差delta 和数值标签
-        self.label13 = tk.Label(self.top, text='delta(1/cm):')
-        self.label13.grid(row=2, column=2)
-        self.label14 = tk.Label(self.top, text=self.unkonwn)
-        self.label14.grid(row=2, column=3)
+        self.delta_label = tk.Label(self.top, text='delta(1/cm):')
+        self.delta_label.grid(row=2, column=2)
+        self.value_of_delta_label = tk.Label(self.top, text=self.unkonwn)
+        self.value_of_delta_label.grid(row=2, column=3)
 
         # 开始按钮
-        self.button1 = tk.Button(self.top, text="start", command=self.press_button1)
-        self.button1.grid(row =5, column=0)
+        self.start_button = tk.Button(self.top, text="start", command=self.press_button1)
+        self.start_button.grid(row =5, column=0)
 
 
     def press_button1(self):
@@ -77,8 +94,8 @@ class tk_generate_ui():
         在输入了lambda1和lambda2之后开始计算得出结果
         :return:
         """
-        lambda1 = float(self.entry1.get())
-        lambda2 = float(self.entry2.get())
+        lambda1 = float(self.lambda1_entry.get())
+        lambda2 = float(self.lambda2_entry.get())
         wave_number1 = interpolation.convert_to_wave_number(lambda1)
         wave_number2 = interpolation.convert_to_wave_number(lambda2)
 
@@ -97,12 +114,12 @@ class tk_generate_ui():
         fixed_term = interpolation.find_fixed_term(wave_number, R, n, delta_l)
 
         #根据获得的结果更新gui
-        self.label4['text']=str(fixed_term)
-        self.label6['text']=str(n)
-        self.label8['text']=str(wave_number1)
-        self.label10['text']=str(wave_number2)
-        self.label12['text']=str(delta_l)
-        self.label14['text']=str(delta)
+        self.value_of_fixed_term_label['text']=str(fixed_term)
+        self.value_of_n_label['text']=str(n)
+        self.value_of_wave_number1_label['text']=str(wave_number1)
+        self.value_of_wave_number2_label['text']=str(wave_number2)
+        self.value_of_delta_l_label['text']=str(delta_l)
+        self.value_of_delta_label['text']=str(delta)
 
 
     def run(self):
@@ -113,5 +130,5 @@ class tk_generate_ui():
         tk.mainloop()
 
 if __name__ == '__main__':
-    g = tk_generate_ui()
+    g = generate_ui()
     g.run()

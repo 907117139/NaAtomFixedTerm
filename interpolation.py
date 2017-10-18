@@ -122,12 +122,12 @@ def find_which_col(delta):
     """
 
     cols = ['12','23','34','45','56','67','78','89']
-    for col in cols:
+    for col in cols: # 非边界情况
         l = list(dataFrame[col])
         if delta > l[-1] and delta < l[0]:
             return col
     i = 0
-    for col in cols:
+    for col in cols: # 边界情况
         l = dataFrame[col].tolist()
         if l[0] < delta:
             small = cols[i]
