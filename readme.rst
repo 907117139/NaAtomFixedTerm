@@ -19,7 +19,7 @@
 ========
 运行方式
 ========
--Windows环境下
+- Windows环境下
     - 若只需要gui界面，则右键gui.pyw选择pythonw运行
     - 若需要看到调试信息，则直接点击运行gui.py
 
