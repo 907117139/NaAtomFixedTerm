@@ -55,7 +55,6 @@ class tk_generate_ui():
         # 搭配delta_l和数值标签
         current_dir = os.getcwd()
         photo = tk.PhotoImage(file=current_dir + r'\resource\picture\delta_l.png')
-        photo = tk.PhotoImage(file=current_dir + r'\resource\picture\delta_l.png')
         self.label11 = tk.Label(self.top, image=photo)
         self.label11.image = photo
         self.label11.grid(row=4, column=0)
