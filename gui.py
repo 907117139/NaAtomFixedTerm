@@ -36,25 +36,29 @@ class generate_ui():
         self.lambda2_entry.grid(row=1, column=1)
 
         # 搭配wave number 1和数值标签
-        self.wave_number1_label = tk.Label(self.top, text='wave number 1(1/cm):')
+        wave_number1_image = tk.PhotoImage(file=self.current_dir + r'\resource\picture\wave_number1.png')
+        self.wave_number1_label = tk.Label(self.top, text='wave number 1(1/cm):', image=wave_number1_image )
+        self.wave_number1_label.image = wave_number1_image
         self.wave_number1_label.grid(row=0, column=2)
         self.value_of_wave_number1_label = tk.Label(self.top, text=self.unkonwn)
         self.value_of_wave_number1_label.grid(row=0, column=3)
 
         # 搭配wave number 2和数值标签
-        self.wave_number2_label = tk.Label(self.top, text='wave number 2(1/cm):')
+        wave_number2_image = tk.PhotoImage(file=self.current_dir + r'\resource\picture\wave_number2.png')
+        self.wave_number2_label = tk.Label(self.top, text='wave number 2(1/cm):', image=wave_number2_image)
+        self.wave_number2_label.image = wave_number2_image
         self.wave_number2_label.grid(row=1, column=2)
         self.value_of_wave_number2_label = tk.Label(self.top, text=self.unkonwn)
         self.value_of_wave_number2_label.grid(row=1, column=3)
 
         # 搭配energy leve和数值标签
-        self.energy_level1_label = tk.Label(self.top, text='energy_level1:')
+        self.energy_level1_label = tk.Label(self.top, text='能级 1:')
         self.value_of_energy_level1_label = tk.Label(self.top, text=self.unkonwn)
         self.energy_level1_label.grid(row=0, column=4)
         self.value_of_energy_level1_label.grid(row=0,column=5)
 
         # 搭配energy leve和数值标签
-        self.energy_level2_label = tk.Label(self.top, text='energy_level2:')
+        self.energy_level2_label = tk.Label(self.top, text='能级 2:')
         self.value_of_energy_level2_label = tk.Label(self.top, text=self.unkonwn)
         self.energy_level2_label.grid(row=1, column=4)
         self.value_of_energy_level2_label.grid(row=1, column=5)
@@ -84,12 +88,19 @@ class generate_ui():
         self.value_of_delta_l_label.grid(row=4, column=1)
 
         # 搭配波数差delta 和数值标签
-        delta_image = tk.PhotoImage(file = self.current_dir + r'\resource\picture\delta.png')
-        self.delta_label = tk.Label(self.top, text='delta(1/cm):', image=delta_image)
-        self.delta_label.image = delta_image
+        delta_v_image = tk.PhotoImage(file = self.current_dir + r'\resource\picture\delta_v.png')
+        self.delta_label = tk.Label(self.top, text='delta(1/cm):', image=delta_v_image)
+        self.delta_label.image = delta_v_image
         self.delta_label.grid(row=2, column=2)
         self.value_of_delta_label = tk.Label(self.top, text=self.unkonwn)
         self.value_of_delta_label.grid(row=2, column=3)
+
+        # 显示公式
+        formula_image = tk.PhotoImage(file=self.current_dir + r'\resource\picture\formula.png')
+        self.formula_label = tk.Label(self.top, image=formula_image)
+        self.formula_label.image = formula_image
+        self.formula_label.grid(row=3, column=2, rowspan=3, columnspan=4)
+
 
         # 开始按钮
         self.start_button = tk.Button(self.top, text="start", command=self.press_button1)
@@ -105,6 +116,8 @@ class generate_ui():
         lambda2 = float(self.lambda2_entry.get())
         wave_number1 = interpolation.convert_to_wave_number(lambda1)
         wave_number2 = interpolation.convert_to_wave_number(lambda2)
+        energy_level1 = interpolation.find_energy_level(lambda1)
+        energy_level2 = interpolation.find_energy_level(lambda2)
 
         n = interpolation.find_n(lambda1, lambda2)
         delta = round(abs(wave_number1 - wave_number2), 3)
@@ -120,6 +133,8 @@ class generate_ui():
         R = interpolation.R
         fixed_term = interpolation.find_fixed_term(wave_number, R, n, delta_l)
 
+
+
         #根据获得的结果更新gui
         self.value_of_fixed_term_label['text']=str(fixed_term)
         self.value_of_n_label['text']=str(n)
@@ -127,6 +142,8 @@ class generate_ui():
         self.value_of_wave_number2_label['text']=str(wave_number2)
         self.value_of_delta_l_label['text']=str(delta_l)
         self.value_of_delta_label['text']=str(delta)
+        self.value_of_energy_level1_label['text']=energy_level1
+        self.value_of_energy_level2_label['text'] = energy_level2
 
 
     def run(self):
