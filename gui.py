@@ -11,6 +11,7 @@ import os
 """
 class generate_ui():
     unkonwn = 'Unknown'
+    current_dir = os.getcwd()
     def __init__(self):
         self.top = tk.Tk()
         self.top.title("TODO")
@@ -22,13 +23,17 @@ class generate_ui():
         self.top.columnconfigure(5, weight=1)
 
         # 搭配lambda1 和输入
-        self.lambda1_label = tk.Label(self.top, text="λ 1(nm):")
+        lambda1_image = tk.PhotoImage(file = self.current_dir + r'\resource\picture\lambda1.png')
+        self.lambda1_label = tk.Label(self.top, text="λ 1(nm):", image=lambda1_image)
+        self.lambda1_label.image = lambda1_image
         self.lambda1_label.grid(row=0)
         self.lambda1_entry = tk.Entry(self.top)
         self.lambda1_entry.grid(row=0, column=1)
 
         # 搭配lambda2 和输入
-        self.lambda2_label = tk.Label(self.top, text="λ 2(nm):")
+        lambda2_image = tk.PhotoImage(file=self.current_dir + r'\resource\picture\lambda2.png')
+        self.lambda2_label = tk.Label(self.top, text="λ 2(nm):", image=lambda2_image)
+        self.lambda2_label.image = lambda2_image
         self.lambda2_label.grid(row=1)
         self.lambda2_entry = tk.Entry(self.top)
         self.lambda2_entry.grid(row=1, column=1)
@@ -58,20 +63,23 @@ class generate_ui():
         self.value_of_energy_level2_label.grid(row=1, column=5)
 
         # 搭配固定项和数值标签
-        self.fixed_term_label = tk.Label(self.top, text="An'l'(1/cm)")
+        fixed_term_image = tk.PhotoImage(file = self.current_dir + r'\resource\picture\fixed_term.png')
+        self.fixed_term_label = tk.Label(self.top, text="An'l'(1/cm)", image=fixed_term_image)
+        self.fixed_term_label.image = fixed_term_image
         self.fixed_term_label.grid(row=2, column=0)
         self.value_of_fixed_term_label = tk.Label(self.top, text=self.unkonwn)
         self.value_of_fixed_term_label.grid(row=2, column=1)
 
         # 搭配n 和数值标签
-        self.n_label = tk.Label(self.top, text="n")
+        n_image = tk.PhotoImage(file = self.current_dir + r'\resource\picture\n.png')
+        self.n_label = tk.Label(self.top, text="n", image=n_image)
+        self.n_label.image = n_image
         self.n_label.grid(row=3, column=0)
         self.value_of_n_label = tk.Label(self.top, text=self.unkonwn)
         self.value_of_n_label.grid(row=3, column=1)
 
         # 搭配delta_l和数值标签
-        current_dir = os.getcwd()
-        delta_l_image = tk.PhotoImage(file=current_dir + r'\resource\picture\delta_l.png')
+        delta_l_image = tk.PhotoImage(file = self.current_dir + r'\resource\picture\delta_l.png')  # 一定得是把路径赋给file属性
         self.delta_l_label = tk.Label(self.top, image=delta_l_image) # 这个语句与下一条语句必须搭配使用才能显示图片
         self.delta_l_label.image = delta_l_image
         self.delta_l_label.grid(row=4, column=0)
@@ -79,7 +87,9 @@ class generate_ui():
         self.value_of_delta_l_label.grid(row=4, column=1)
 
         # 搭配波数差delta 和数值标签
-        self.delta_label = tk.Label(self.top, text='delta(1/cm):')
+        delta_image = tk.PhotoImage(file = self.current_dir + r'\resource\picture\delta.png')
+        self.delta_label = tk.Label(self.top, text='delta(1/cm):', image=delta_image)
+        self.delta_label.image = delta_image
         self.delta_label.grid(row=2, column=2)
         self.value_of_delta_label = tk.Label(self.top, text=self.unkonwn)
         self.value_of_delta_label.grid(row=2, column=3)
