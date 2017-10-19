@@ -1,14 +1,11 @@
 import tkinter as tk
 import interpolation
 import os
-
-
-
-
 """
     控件命名规则：xxx_控件类名
-        xxx是用来区分的真实名字
+        xxx是用来区分的真实名字, 如xxx_button
 """
+
 class generate_ui():
     unkonwn = 'Unknown'
     current_dir = os.getcwd()
