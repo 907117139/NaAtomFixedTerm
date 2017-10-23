@@ -99,7 +99,8 @@ class generate_ui():
         formula_image = tk.PhotoImage(file=self.current_dir + r'\resource\picture\formula.png')
         self.formula_label = tk.Label(self.top, image=formula_image)
         self.formula_label.image = formula_image
-        self.formula_label.grid(row=3, column=2, rowspan=3, columnspan=4)
+        self.formula_label.grid(row=3, column=2, rowspan=4, columnspan=4)
+
 
 
         # 开始按钮
