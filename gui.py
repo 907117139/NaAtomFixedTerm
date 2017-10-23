@@ -3,7 +3,7 @@ import interpolation
 import os
 """
     控件命名规则：xxx_控件类名
-        xxx是用来区分的真实名字, 如xxx_button
+        xxx是用来区分的真实名字, 如xxx_button, xxx_label
 """
 
 class generate_ui():
@@ -11,7 +11,7 @@ class generate_ui():
     current_dir = os.getcwd()
     def __init__(self):
         self.top = tk.Tk()
-        self.top.title("TODO")
+        self.top.title("钠原子光谱波数及固定项计算")
         self.top.columnconfigure(0, weight=1)
         self.top.columnconfigure(1, weight=1)
         self.top.columnconfigure(2, weight=1)
