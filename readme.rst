@@ -30,7 +30,7 @@
 - pip install pyinstaller，这一步是为了安装pyinstaller这个工具，若安装，可省略
 - 注意打包的时候pyinstaller不能打包图片这些资源，所以需要自己手动赋值这些图片的文件夹到运行目录
 
-- pyinstaller -w *.py，代表你要执行的文件名
+- pyinstaller -w *.py，代表你要执行的文件名，如pyinstaller -w  F:\NaAtomFixedTerm\NaAtomFixedTerm\gui.py
 
 - 生成的exe文件在一个dist的文件夹里面
 
