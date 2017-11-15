@@ -20,12 +20,10 @@ def generate_Rydberg(R):
             # print(i,' ',j)
             row.append(round(R / pow(i + j, 2), precise_value))
         temp.append(row)
-    index = 0
     for i in range(len(temp)):
         stop = len(temp[i]) - 1
         row = []
-        row.append(alpha[index])
-        index += 1
+        row.append(alpha[i])
         for j in range(len(temp[i])):
             row.append(temp[i][j])
             if j == stop:

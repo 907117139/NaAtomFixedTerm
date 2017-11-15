@@ -15,6 +15,27 @@ def convert_to_wave_number(lamb):
     return round(pow(10,7)/lamb, 2)
 
 
+def find_which_col(delta):
+    """
+    根据delta值求出所在的列
+    :param delta:
+    :return:
+    """
+
+    cols = ['12','23','34','45','56','67','78','89']
+    for col in cols: # 非边界情况
+        l = list(dataFrame[col])
+        if delta > l[-1] and delta < l[0]:
+            return [col]
+    i = 0
+    for col in cols: # 边界情况
+        l = dataFrame[col].tolist()
+        if l[0] < delta:
+            small = cols[i]
+            big = cols[i-1]
+            return [big, small]
+        i = i + 1
+
 def find_alpha(delta,col):
     """
     根据求得的alpha值等来求出当前对应的alpha值
@@ -39,7 +60,6 @@ def find_alpha(delta,col):
 
     alpha = round(big_a + (big_delta - delta)/(big_delta-small_delta)*(small_a - big_a), 3)
     return alpha
-
 
 def find_alpha_bigger_than_delta(delta, col):
     """
@@ -104,6 +124,42 @@ def find_n(lambda1, lambda2):
     return n
 
 
+def find_m(col):
+    """
+    根据delta所在的col值提取出较小的m值
+    :param col:
+    :return:
+    """
+    m = int(col[0])
+    m = m // 10
+    return m
+
+
+def find_delta_l(n,m,alpha):
+    """
+    根据已知的m,n,alpha求对应的delta_l值
+    :param n:
+    :param m:
+    :param alpha:
+    :return:
+    """
+    return round(n - m - alpha, 3)
+
+
+def find_fixed_term(wave_number, R, n, delta_l):
+    """
+    根据波数，常数，n值还有delta_l求出固定项
+    :param wave_number:
+    :param R:
+    :param n:
+    :param delta_l:
+    :return:
+    """
+    result = round(wave_number + R / pow(n-delta_l, 2), generate_Rydberg_form.precise_value)
+    return round(result, 2)
+
+
+
 def find_energy_level(_lambda):
     """
     根据lambda值就出相应的能级
@@ -119,62 +175,6 @@ def find_energy_level(_lambda):
             return energy_level[i]
 
 
-def find_delta_l(n,m,alpha):
-    """
-    根据已知的m,n,alpha求对应的delta_l值
-    :param n:
-    :param m:
-    :param alpha:
-    :return:
-    """
-    return round(n - m - alpha, 3)
-
-
-def find_which_col(delta):
-    """
-    根据delta值求出所在的列
-    :param delta:
-    :return:
-    """
-
-    cols = ['12','23','34','45','56','67','78','89']
-    for col in cols: # 非边界情况
-        l = list(dataFrame[col])
-        if delta > l[-1] and delta < l[0]:
-            return [col]
-    i = 0
-    for col in cols: # 边界情况
-        l = dataFrame[col].tolist()
-        if l[0] < delta:
-            small = cols[i]
-            big = cols[i-1]
-            return [big, small]
-        i = i + 1
-
-
-
-def find_m(col):
-    """
-    根据delta所在的col值提取出较小的m值
-    :param col:
-    :return:
-    """
-    m = int(col[0])
-    m = m // 10
-    return m
-
-def find_fixed_term(wave_number, R, n, delta_l):
-    """
-    根据波数，常熟，n值还有delta_l求出固定项
-    :param wave_number:
-    :param R:
-    :param n:
-    :param delta_l:
-    :return:
-    """
-    result = round(wave_number + R / pow(n-delta_l, 2), generate_Rydberg_form.precise_value)
-    return round(result, 2)
-
 if __name__ == '__main__':
     """
     测试功能是否正确
@@ -187,7 +187,7 @@ if __name__ == '__main__':
     wave_number2 = convert_to_wave_number(lambda2)
     print("wave number 2:", wave_number2)
 
-    delta = round(abs(wave_number1 - wave_number2), generate_Rydberg_form.precise_value)
+    delta = round(abs(wave_number1 - wave_number2), 2)
     print("delta:",delta)
     col = find_which_col(delta)
     alpha = find_alpha(delta, col)
